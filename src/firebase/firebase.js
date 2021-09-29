@@ -13,5 +13,3 @@ export const database = {
     users: firestore.collection('users'),
     getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp
 };
-
-

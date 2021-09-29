@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
         return auth.signInWithEmailAndPassword(email, password);
     }
 
-    const signup = (email, password) => {
+    const register = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password);
     }
 
@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
     const contextObject = {
         currentUser,
         login,
-        signup,
+        register,
         logout
     }
 

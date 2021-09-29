@@ -16,7 +16,7 @@ function App() {
           <PrivateRoute exact path="/" privateComponent={Dummy} />
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/signup" component={Register} />
+          <Route path="/register" component={Register} />
         </Switch>
       </AuthProvider>
     </Router>
