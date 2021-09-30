@@ -1,12 +1,10 @@
 import React from 'react';
-import LinkButton from '../LinkButton/LinkButton';
+import Navbar from '../Navbar/Navbar';
 
 function Home() {
     return (
         <>
-            <LinkButton content=" About " routeLink="/home" />
-            <LinkButton content=" Login " routeLink="/login" />
-            <LinkButton content=" Register " routeLink="/register" />
+            <Navbar />
             <h1>This is Pproval's Home page</h1>
         </>
     )

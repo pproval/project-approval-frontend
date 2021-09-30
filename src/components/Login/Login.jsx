@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Formik, Form, useField } from 'formik';
 import { loginValidationSchema } from '../../validations/validationSchema';
 import { AuthContext } from '../../context/AuthProvider';
-import LinkButton from '../LinkButton/LinkButton';
+import Navbar from '../Navbar/Navbar';
 
 const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -51,10 +51,7 @@ function Login() {
             {error ? <h1>{error}</h1> : <></>}
             {loading ? <h1>Loading...</h1> :
                 <>
-                    <LinkButton content=" Home " routeLink="/home" />
-                    <LinkButton content=" Login " routeLink="/login" />
-                    <LinkButton content=" Register " routeLink="/register" />
-
+                    <Navbar />
 
                     <Formik
                         initialValues={{
