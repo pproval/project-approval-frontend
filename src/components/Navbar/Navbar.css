@@ -1,0 +1,45 @@
+.Navbar {
+  width: 100%;
+  height: 12vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Navbar-container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Navbar-logo {
+  width: 30%;
+  /* background-color: blue; */
+}
+
+.Navbar-logo > h1 {
+  color: rgba(4, 255, 171, 1);
+}
+
+.Navbar-links {
+  width: 40%;
+  height: 100%;
+  /* background-color: blueviolet; */
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Navbar-link {
+  /* background-color: burlywood; */
+  height: 60%;
+  width: 20%;
+  /* padding: 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
