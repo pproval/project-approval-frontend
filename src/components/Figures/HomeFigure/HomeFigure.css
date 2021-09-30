@@ -1,0 +1,62 @@
+.Home-circle-1,
+.Home-circle-2 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background-color: #00dd8cac;
+  border-radius: 50%;
+}
+
+.Home-circle-1 {
+  top: 10%;
+  left: 10%;
+}
+
+.Home-circle-2 {
+  bottom: 10%;
+  right: 10%;
+}
+
+.Home-rect1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 3;
+  height: 60%;
+  width: 55%;
+  background-color: #2f2f42b1;
+  border-radius: 10px;
+  /* backdrop-filter: blur(50px); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: 0px 10px 15px rgba(14, 14, 14, 0.694);
+}
+
+.Home-rect2 {
+  z-index: 5;
+  width: 100%;
+  height: 25%;
+  background-color: rgba(196, 196, 196, 0.14);
+  border-radius: 10px;
+  backdrop-filter: blur(50px);
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  border: 0.5px solid rgba(147, 147, 147, 0.211);
+  box-shadow: 0px 10px 15px rgba(25, 25, 25, 0.694);
+  transition: all 0.2s ease-in-out;
+}
+
+.Home-rect2:hover {
+  background-color: rgba(196, 196, 196, 0.333);
+  transform: scale(105%);
+}
+
+.Home-rect-cir {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #00dd8d;
+}

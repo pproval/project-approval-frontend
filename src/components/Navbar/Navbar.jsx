@@ -12,9 +12,9 @@ export default function Navbar() {
                     <h1>Pproval</h1>
                 </div>
                 <ul className="Navbar-links">
-                    <li className="Navbar-link"><LinkButton content="About" routeLink="/home" /></li>
-                    <li className="Navbar-link"><LinkButton content="Login" routeLink="/login" /></li>
-                    <li className="Navbar-link"><LinkButton content="Register" routeLink="/register" /></li>
+                    <li className="Navbar-link"><LinkButton content="About" routeLink="/home" special={false} /></li>
+                    <li className="Navbar-link"><LinkButton content="Login" routeLink="/login" special={false} /></li>
+                    <li className="Navbar-link"><LinkButton content="Register" routeLink="/register" special={true} /></li>
                 </ul>
             </div>
         </div>

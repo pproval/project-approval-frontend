@@ -12,6 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Poppins", sans-serif;
+  background: url("./Images/Background.svg") no-repeat fixed center;
+  background-size: cover;
 }
 
 code {
