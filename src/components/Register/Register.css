@@ -1,0 +1,28 @@
+.Register {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-container {
+  width: 90%;
+  height: 100%;
+  /* background-color: blueviolet; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Register-left {
+  width: 45%;
+  height: 100%;
+  /* background-color: chartreuse; */
+  position: relative;
+}
+
+.Register-right {
+  width: 45%;
+  height: 100%;
+  /* background-color: chartreuse; */
+}

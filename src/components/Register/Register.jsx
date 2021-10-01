@@ -5,6 +5,10 @@ import { signUpValidationSchema } from '../../validations/validationSchema';
 import { database } from '../../firebase/firebase';
 import { AuthContext } from '../../context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
+import RegisterFigure from '../Figures/RegisterFigure/RegisterFigure';
+
+// Styles
+import './Register.css'
 
 const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -68,53 +72,62 @@ function Register() {
                 <>
                     <Navbar />
 
-                    <Formik
-                        initialValues={{
-                            firstName: '',
-                            lastName: '',
-                            email: '',
-                            password: '',
-                            passwordConfirmation: '',
-                        }}
-                        validationSchema={signUpValidationSchema}
-                        onSubmit={(values) => {
-                            handleUserRegistration(values);
-                        }}
-                    >
-                        <Form>
-                            <MyTextInput
-                                name="firstName"
-                                type="text"
-                                placeholder="First Name"
-                            />
+                    <div className="Register">
+                        <div className="Register-container">
+                            <div className="Register-left">
+                                <RegisterFigure />
+                            </div>
+                            <div className="Register-right">
+                                <Formik
+                                    initialValues={{
+                                        firstName: '',
+                                        lastName: '',
+                                        email: '',
+                                        password: '',
+                                        passwordConfirmation: '',
+                                    }}
+                                    validationSchema={signUpValidationSchema}
+                                    onSubmit={(values) => {
+                                        handleUserRegistration(values);
+                                    }}
+                                >
+                                    <Form>
+                                        <MyTextInput
+                                            name="firstName"
+                                            type="text"
+                                            placeholder="First Name"
+                                        />
 
-                            <MyTextInput
-                                name="lastName"
-                                type="text"
-                                placeholder="Last Name"
-                            />
+                                        <MyTextInput
+                                            name="lastName"
+                                            type="text"
+                                            placeholder="Last Name"
+                                        />
 
-                            <MyTextInput
-                                name="email"
-                                type="email"
-                                placeholder="Email (john@xyz.com)"
-                            />
+                                        <MyTextInput
+                                            name="email"
+                                            type="email"
+                                            placeholder="Email (john@xyz.com)"
+                                        />
 
-                            <MyTextInput
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                            />
+                                        <MyTextInput
+                                            name="password"
+                                            type="password"
+                                            placeholder="Password"
+                                        />
 
-                            <MyTextInput
-                                name="passwordConfirmation"
-                                type="password"
-                                placeholder="Confirm Password"
-                            />
+                                        <MyTextInput
+                                            name="passwordConfirmation"
+                                            type="password"
+                                            placeholder="Confirm Password"
+                                        />
 
-                            <button type="submit">Register</button>
-                        </Form>
-                    </Formik>
+                                        <button type="submit">Register</button>
+                                    </Form>
+                                </Formik>
+                            </div>
+                        </div>
+                    </div>
                 </>
             }
         </>

@@ -1,12 +1,12 @@
-.LoginFigure {
+.RegisterFigure {
   height: 100%;
   width: 100%;
   /* background-color: blueviolet; */
   position: relative;
 }
 
-.Login-rect1,
-.Login-rect2 {
+.Register-rect1,
+.Register-rect2 {
   height: 400px;
   width: 350px;
   background-color: rgba(196, 196, 196, 0.14);
@@ -14,31 +14,31 @@
   backdrop-filter: blur(50px);
   position: absolute;
   border: 0.5px solid rgba(147, 147, 147, 0.211);
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.163);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.285);
 }
 
-.Login-rect1 {
-  z-index: 2;
-  top: 10%;
-  left: 10%;
-}
-
-.Login-rect2 {
+.Register-rect1 {
   z-index: 3;
-  bottom: 10%;
+  top: 10%;
   right: 10%;
 }
 
-.Login-img {
+.Register-rect2 {
+  z-index: 2;
+  bottom: 10%;
+  left: 10%;
+}
+
+.Register-img {
   position: absolute;
   z-index: 4;
   /* background-color: blueviolet; */
-  height: 500px;
-  top: 10%;
-  left: 10%;
+  height: 400px;
+  top: 20%;
+  left: 20%;
   transition: all 0.3s ease-in-out;
 }
 
-.Login-img:hover {
+.Register-img:hover {
   transform: scale(110%);
 }
