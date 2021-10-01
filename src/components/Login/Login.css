@@ -1,0 +1,28 @@
+.Login {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login-container {
+  width: 90%;
+  height: 100%;
+  /* background-color: blueviolet; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Login-left {
+  width: 45%;
+  height: 100%;
+  /* background-color: chartreuse; */
+  position: relative;
+}
+
+.Login-right {
+  width: 45%;
+  height: 100%;
+  /* background-color: chartreuse; */
+}

@@ -1,0 +1,44 @@
+.LoginFigure {
+  height: 100%;
+  width: 100%;
+  /* background-color: blueviolet; */
+  position: relative;
+}
+
+.Login-rect1,
+.Login-rect2 {
+  height: 400px;
+  width: 350px;
+  background-color: rgba(196, 196, 196, 0.14);
+  border-radius: 10px;
+  backdrop-filter: blur(50px);
+  position: absolute;
+  border: 0.5px solid rgba(147, 147, 147, 0.211);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.163);
+}
+
+.Login-rect1 {
+  z-index: 2;
+  top: 10%;
+  left: 10%;
+}
+
+.Login-rect2 {
+  z-index: 3;
+  bottom: 10%;
+  right: 10%;
+}
+
+.Login-img {
+  position: absolute;
+  z-index: 4;
+  /* background-color: blueviolet; */
+  height: 500px;
+  top: 10%;
+  left: 10%;
+  transition: all 0.3s ease-in-out;
+}
+
+.Login-img:hover {
+  transform: scale(110%);
+}

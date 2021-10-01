@@ -4,6 +4,10 @@ import { Formik, Form, useField } from 'formik';
 import { loginValidationSchema } from '../../validations/validationSchema';
 import { AuthContext } from '../../context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
+import LoginFigure from '../Figures/LoginFigure/LoginFigure';
+
+// Styles
+import './Login.css'
 
 const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -53,32 +57,41 @@ function Login() {
                 <>
                     <Navbar />
 
-                    <Formik
-                        initialValues={{
-                            email: '',
-                            password: '',
-                        }}
-                        validationSchema={loginValidationSchema}
-                        onSubmit={(values) => {
-                            handleLogin(values);
-                        }}
-                    >
-                        <Form>
-                            <MyTextInput
-                                name="email"
-                                type="email"
-                                placeholder="Email (john@xyz.com)"
-                            />
+                    <div className="Login">
+                        <div className="Login-container">
+                            <div className="Login-left">
+                                <LoginFigure />
+                            </div>
+                            <div className="Login-right">
+                                <Formik
+                                    initialValues={{
+                                        email: '',
+                                        password: '',
+                                    }}
+                                    validationSchema={loginValidationSchema}
+                                    onSubmit={(values) => {
+                                        handleLogin(values);
+                                    }}
+                                >
+                                    <Form>
+                                        <MyTextInput
+                                            name="email"
+                                            type="email"
+                                            placeholder="Email (john@xyz.com)"
+                                        />
 
-                            <MyTextInput
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                            />
+                                        <MyTextInput
+                                            name="password"
+                                            type="password"
+                                            placeholder="Password"
+                                        />
 
-                            <button type="submit">Login</button>
-                        </Form>
-                    </Formik>
+                                        <button type="submit">Login</button>
+                                    </Form>
+                                </Formik>
+                            </div>
+                        </div>
+                    </div>
                 </>
             }
         </>
