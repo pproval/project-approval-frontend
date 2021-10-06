@@ -5,8 +5,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease-in-out;
   /* position: absolute;
   z-index: 2; */
+}
+
+.Navbar-open {
+  width: 100%;
+  height: 12vh;
+  background-color: #000017;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.483);
+  transition: all 0.3s ease-in-out;
 }
 
 .Navbar-container {
