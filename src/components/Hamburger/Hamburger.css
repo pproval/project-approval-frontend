@@ -1,0 +1,46 @@
+.Hamburger {
+  width: 30px;
+  height: 20px;
+  /* background-color: blanchedalmond; */
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.Hamburger-top,
+.Hamburger-middle,
+.Hamburger-bottom {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: rotateZ(0);
+}
+
+.Hamburger-top-open {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: rotateZ(45deg) translateY(12px);
+  opacity: 1;
+}
+
+.Hamburger-middle-open {
+  opacity: 0;
+}
+
+.Hamburger-bottom-open {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: rotateZ(-45deg) translateY(-12px);
+  opacity: 1;
+}

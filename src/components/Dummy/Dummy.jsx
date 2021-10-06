@@ -1,24 +1,16 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
+import Navbar from '../Navbar/Navbar'
 
 function Dummy() {
 
-    const { logout } = useContext(AuthContext);
-
-    const handleSignout = async (e) => {
-        try {
-            await logout();
-        }
-        catch (err) {
-            console.log(err.message);
-        }
-    }
-
     return (
-        <div>
-            <h1>This is an awesome app!</h1>
-            <button onClick={handleSignout}>Log out</button>
-        </div>
+        <>
+            <Navbar />
+            <div>
+                <h1>This is the dummy page for user</h1>
+            </div>
+        </>
     )
 }
 
