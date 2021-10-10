@@ -4,7 +4,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Dummy from './components/Dummy/Dummy';
+import Dashboard from './components/Dashboard/Dashboard';
 import AuthProvider from './context/AuthProvider';
 import './styles/App.css';
 
@@ -13,7 +13,7 @@ function App() {
     <Router>
       <AuthProvider>
         <Switch>
-          <PrivateRoute exact path="/" privateComponent={Dummy} />
+          <PrivateRoute exact path="/" privateComponent={Dashboard} />
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
