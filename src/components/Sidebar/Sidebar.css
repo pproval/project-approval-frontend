@@ -1,6 +1,6 @@
 .Sidebar-open,
 .Sidebar-close {
-  position: absolute;
+  position: fixed;
   z-index: 3;
   left: 0%;
   width: 300px;
