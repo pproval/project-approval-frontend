@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
 
 // Images
@@ -29,12 +30,12 @@ function Dummy() {
                             <div className="Dashboard-projects">
                                 <div className="project">
                                     <h3 style={{ color: "white" }}>Project Name</h3>
-                                    <button className="project-view-btn"><h3>View</h3></button>
+                                    <Link to="/project" className="project-view-btn"><h3>View</h3></Link>
                                 </div>
-                                <div className="project-add">
+                                <Link to="/project/new" className="project-add">
                                     <img src={Add} alt="add" style={{ height: "50px" }} />
                                     <h3>Create Project</h3>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
