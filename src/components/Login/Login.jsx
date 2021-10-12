@@ -63,6 +63,7 @@ function Login() {
                                 <LoginFigure />
                             </div>
                             <div className="Login-right">
+                                <h1 className="headerLogin">Login</h1>
                                 <Formik
                                     initialValues={{
                                         email: '',
@@ -78,15 +79,17 @@ function Login() {
                                             name="email"
                                             type="email"
                                             placeholder="Email (john@xyz.com)"
+                                            className="email"
                                         />
 
                                         <MyTextInput
                                             name="password"
                                             type="password"
                                             placeholder="Password"
+                                            className="password"
                                         />
 
-                                        <button type="submit">Login</button>
+                                        <button className= "buttonLogin" type="submit">Login</button>
                                     </Form>
                                 </Formik>
                             </div>
