@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { database } from '../../firebase/firebase';
 import { AuthContext } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
@@ -14,12 +15,25 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 function Dashboard() {
 
     const { currentUser } = useContext(AuthContext);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState();
+
+    useEffect(() => {
+        // Attaching a listener on the current user's document in DB
+        // Whenever there is change/update, callback is fired and it updates userdata state
+        const unsubscribe = database.users.doc(currentUser.uid).onSnapshot((doc) => {
+            setUserData(doc.data());
+        });
+        return unsubscribe;
+    }, [currentUser]);
+
+    useEffect(() => {
+        console.log(userData);
+    })
 
     return (
         <>
-            {loading ? <LoadingScreen /> :
+            {userData == null ? <LoadingScreen /> :
                 <>
                     <Navbar />
                     <div className="Dashboard">
@@ -27,8 +41,8 @@ function Dashboard() {
                             <div className="Dashboard-header">
                                 <img src={Profile} alt="profile" className="profile-img" />
                                 <div className="Dashboard-metadata">
-                                    <h1 style={{ fontSize: "40px" }}>FirstName SecondName</h1>
-                                    <h3 style={{ color: "rgba(255, 255, 255, 0.5)" }}>College Name (Degree, Branch)</h3>
+                                    <h1 style={{ fontSize: "40px" }}>{userData.username}</h1>
+                                    <h3 style={{ color: "rgba(255, 255, 255, 0.5)" }}>{userData.college} ({userData.degree}, {userData.branch})</h3>
                                 </div>
                             </div>
                             <div className="Dashboard-body">
