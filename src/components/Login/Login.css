@@ -70,8 +70,10 @@ button {
   color: #000017; */
   background: rgba(147, 147, 147, 0.15);
   color: rgba(4, 255, 171, 1);
+  font-weight: bold;
 }
 .buttonLogin:hover {
   background-color: rgba(4, 255, 171, 1);
   color: #000017;
+  cursor: pointer;
 }

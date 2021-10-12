@@ -48,8 +48,16 @@ function Register() {
 
             const userObject = {
                 email: values.email,
-                userID: uid,
+                userId: uid,
                 username: values.firstName + " " + values.lastName,
+                role: 1,
+                college: "MSIT",
+                branch: "ECE",
+                degree: "B.Tech",
+                eno: "default",
+                skills: [],
+                team: [],
+                projectId: "projectId", 
                 createdAt: database.getCurrentTimeStamp(),
             }
 
