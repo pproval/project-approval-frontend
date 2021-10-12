@@ -78,7 +78,7 @@ function Register() {
                                 <RegisterFigure />
                             </div>
                             <div className="Register-right">
-                                <Formik
+                               <h1 className="headerRegister">Register</h1> <Formik
                                     initialValues={{
                                         firstName: '',
                                         lastName: '',
@@ -96,33 +96,38 @@ function Register() {
                                             name="firstName"
                                             type="text"
                                             placeholder="First Name"
+                                            className="firstName"
                                         />
 
                                         <MyTextInput
                                             name="lastName"
                                             type="text"
                                             placeholder="Last Name"
+                                            className="lastName"
                                         />
 
                                         <MyTextInput
                                             name="email"
                                             type="email"
                                             placeholder="Email (john@xyz.com)"
+                                        className="email"
                                         />
 
                                         <MyTextInput
                                             name="password"
                                             type="password"
                                             placeholder="Password"
+                                        className="password"
                                         />
 
                                         <MyTextInput
                                             name="passwordConfirmation"
                                             type="password"
                                             placeholder="Confirm Password"
+                                        className="confirmPassword"
                                         />
 
-                                        <button type="submit">Register</button>
+                                        <button className = "buttonRegister" type="submit">Register</button>
                                     </Form>
                                 </Formik>
                             </div>
