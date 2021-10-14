@@ -4,6 +4,9 @@ import React from 'react'
 import './ProjectStatus.css'
 
 export default function ProjectStatus({ status }) {
+    // Based on the status prop passed, the following indicator will have either green or white color 
+    // as its background
+
     return (
         <div className="ProjectStatus">
             <div className="ProjectStatus-indicator">
