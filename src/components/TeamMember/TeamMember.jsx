@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Image
-import Profile from '../Dashboard/Images/Profile.png'
+import Profile from '../StudentDashboard/Images/Profile.png'
 
 // Styles
 import './TeamMember.css'

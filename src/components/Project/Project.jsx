@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
 import TeamMemberFlat from '../TeamMember/TeamMemberFlat'
-import { Link } from 'react-router-dom'
+import ProjectStatus from '../ProjectStatus/ProjectStatus'
 
 // Styles
 import './Project.css'
@@ -20,7 +21,9 @@ export default function Project() {
                         <div className="Project-body-container">
                             <div className="Project-status">
                                 <h2>Status</h2>
-                                <div className="Project-status-box"></div>
+                                <div className="Project-status-box">
+                                    <ProjectStatus status={2} />
+                                </div>
                             </div>
                             <div className="Project-description">
                                 <h2>Description</h2>
