@@ -58,9 +58,10 @@ input {
   /* color: #e5e5e5; */
   /* background-color: rgba(4, 255, 171, 1);
   color: #000017; */
-  background: rgba(147, 147, 147, 0.15);
+  background: transparent;
   color: rgba(4, 255, 171, 1);
   font-weight: bold;
+  transition: all 0.1s ease-in-out;
 }
 .buttonRegister:hover {
   background-color: rgba(4, 255, 171, 1);

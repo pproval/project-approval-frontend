@@ -89,7 +89,7 @@ function Login() {
                                             className="password"
                                         />
 
-                                        <button className= "buttonLogin" type="submit">Login</button>
+                                        <button className="buttonLogin" type="submit"><h3>Login</h3></button>
                                     </Form>
                                 </Formik>
                             </div>

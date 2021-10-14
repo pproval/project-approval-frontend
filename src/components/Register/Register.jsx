@@ -57,7 +57,7 @@ function Register() {
                 eno: "default",
                 skills: [],
                 team: [],
-                projectId: "projectId", 
+                projectId: "projectId",
                 createdAt: database.getCurrentTimeStamp(),
             }
 
@@ -86,7 +86,7 @@ function Register() {
                                 <RegisterFigure />
                             </div>
                             <div className="Register-right">
-                               <h1 className="headerRegister">Register</h1> <Formik
+                                <h1 className="headerRegister">Register</h1> <Formik
                                     initialValues={{
                                         firstName: '',
                                         lastName: '',
@@ -118,24 +118,24 @@ function Register() {
                                             name="email"
                                             type="email"
                                             placeholder="Email (john@xyz.com)"
-                                        className="email"
+                                            className="email"
                                         />
 
                                         <MyTextInput
                                             name="password"
                                             type="password"
                                             placeholder="Password"
-                                        className="password"
+                                            className="password"
                                         />
 
                                         <MyTextInput
                                             name="passwordConfirmation"
                                             type="password"
                                             placeholder="Confirm Password"
-                                        className="confirmPassword"
+                                            className="confirmPassword"
                                         />
 
-                                        <button className = "buttonRegister" type="submit">Register</button>
+                                        <button className="buttonRegister" type="submit"><h3>Register</h3></button>
                                     </Form>
                                 </Formik>
                             </div>
