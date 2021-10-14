@@ -7,7 +7,7 @@ export default function Dashboard() {
     // This is the main wrapper component to conditionally render out student,teacher or admin dashboard
     // based on the current logged in user's role
 
-    const role = 1; // This is just a placeholder value for now, later it will be the current user's role
+    const role = 2; // This is just a placeholder value for now, later it will be the current user's role
 
     const displayDashboard = (role) => {
         switch (role) {
