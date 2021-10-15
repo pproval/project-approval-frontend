@@ -20,6 +20,8 @@ export default function Sidebar({ open, role }) {
                 return (
                     <div className="Sidebar-container">
                         <Link to="/" className="Sidebar-links"><h3>Dasboard</h3></Link>
+                        <Link to="/studentlist" className="Sidebar-links"><h3>Students</h3></Link>
+                        <Link to="/teacherlist" className="Sidebar-links"><h3>Teachers</h3></Link>
                     </div>
                 );
             default:
