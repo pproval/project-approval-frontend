@@ -35,7 +35,7 @@ function StudentDashboard() {
         <>
             {userData == null ? <LoadingScreen /> :
                 <>
-                    <Navbar />
+                    <Navbar role={1} />
                     <div className="StudentDashboard">
                         <div className="StudentDashboard-container">
                             <div className="StudentDashboard-header">

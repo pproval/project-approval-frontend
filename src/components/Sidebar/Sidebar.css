@@ -18,6 +18,15 @@
   left: -100%;
 }
 
+.Sidebar-container {
+  width: 100%;
+  /* background-color: blanchedalmond; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .Sidebar-links {
   height: 60px;
   width: 80%;
@@ -28,6 +37,7 @@
   align-items: center;
   color: white;
   transition: all 0.1s ease-in-out;
+  margin: 20px 0;
   /* background-color: blue; */
 }
 

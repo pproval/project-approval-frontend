@@ -7,7 +7,7 @@ import Sidebar from '../Sidebar/Sidebar';
 // Styles
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ role }) {
     const { logout, currentUser } = useContext(AuthContext);
     const [hamburgerState, setHamburgerState] = useState(false);
 
@@ -54,7 +54,7 @@ export default function Navbar() {
                             </ul>
                         </div>
                     </div>
-                    <Sidebar open={hamburgerState} />
+                    <Sidebar open={hamburgerState} role={role} />
                 </>
             }
         </>
