@@ -3,6 +3,7 @@ import { database } from '../../firebase/firebase';
 import { AuthContext } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 // Images
 import Profile from './Images/Profile.png'
@@ -10,7 +11,6 @@ import Add from './Images/Add.png'
 
 // Styles
 import './StudentDashboard.css';
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 function StudentDashboard() {
 
@@ -35,20 +35,20 @@ function StudentDashboard() {
         <>
             {userData == null ? <LoadingScreen /> :
                 <>
-                    <Navbar />
-                    <div className="Dashboard">
-                        <div className="Dashboard-container">
-                            <div className="Dashboard-header">
+                    <Navbar role={1} />
+                    <div className="StudentDashboard">
+                        <div className="StudentDashboard-container">
+                            <div className="StudentDashboard-header">
                                 <img src={Profile} alt="profile" className="profile-img" />
-                                <div className="Dashboard-metadata">
+                                <div className="StudentDashboard-metadata">
                                     <h1 style={{ fontSize: "40px" }}>{userData.username}</h1>
                                     <h3 style={{ color: "rgba(255, 255, 255, 0.5)" }}>{userData.college} ({userData.degree}, {userData.branch})</h3>
                                 </div>
                             </div>
-                            <div className="Dashboard-body">
-                                <div className="Dashboard-body-container">
-                                    <h2 className="Dashboard-body-title">Project</h2>
-                                    <div className="Dashboard-projects">
+                            <div className="StudentDashboard-body">
+                                <div className="StudentDashboard-body-container">
+                                    <h2 className="StudentDashboard-body-title">Project</h2>
+                                    <div className="StudentDashboard-projects">
                                         <div className="project">
                                             <h3 style={{ color: "white" }}>Project Name</h3>
                                             <Link to="/project" className="project-view-btn"><h3>View</h3></Link>
