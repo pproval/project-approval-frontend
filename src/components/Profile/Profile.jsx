@@ -128,7 +128,7 @@ export default function Profile() {
 
                                                         <Spinner label="Degree " name="Degree">
                                                             <option value="">Select your degree</option>
-                                                            <option value="B.TECH">Bachelor of Technology</option>
+                                                            <option value="B.Tech">Bachelor of Technology</option>
                                                             <option value="B.E">Bachelor of Engineering</option>
                                                         </Spinner>
 
