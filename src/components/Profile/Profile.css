@@ -1,3 +1,115 @@
-p {
+/* p {
     color: white;
+} */
+
+.Profile {
+  /* background-color: blueviolet; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Profile-container {
+  /* background-color: cadetblue; */
+  width: 85%;
+}
+
+.Profile-header {
+  /* background-color: chocolate; */
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Profile-img {
+  height: 150px;
+}
+
+.Profile-body {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.Profile-data {
+  /* background-color: coral; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.Profile-data > h3 {
+  background-color: cornflowerblue;
+  width: 400px;
+  margin: 10px;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 84, 0.4);
+  color: rgba(0, 0, 84, 0.6);
+}
+
+.Profile-edit-btn {
+  width: 400px;
+  background-color: white;
+  border: 2px solid rgba(4, 255, 171, 1);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.Profile-edit-btn:hover {
+  background-color: rgba(4, 255, 171, 1);
+  color: white;
+}
+
+/* Edit profile form styles from here */
+
+.Profile-edit-form {
+  width: 500px;
+  color: rgba(0, 0, 84, 0.6);
+}
+
+.Profile-btn-grp {
+  width: 400px;
+  /* background-color: crimson; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.Profile-edit-cancel,
+.Profile-edit-save {
+  width: 190px;
+  background-color: white;
+  transition: all 0.1s ease-in-out;
+}
+
+.Profile-edit-cancel {
+  color: rgba(0, 0, 84, 0.6);
+  border: 2px solid rgba(0, 0, 84, 0.6);
+}
+
+.Profile-edit-cancel:hover {
+  color: white;
+  background-color: rgba(0, 0, 84, 0.6);
+  border: none;
+}
+
+.Profile-edit-save {
+  color: rgba(4, 255, 171, 1);
+  border: 2px solid rgba(4, 255, 171, 1);
+}
+
+.Profile-edit-save:hover {
+  color: white;
+  background-color: rgba(4, 255, 171, 1);
 }
