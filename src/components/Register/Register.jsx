@@ -54,7 +54,7 @@ function Register() {
                 college: "MSIT",
                 branch: "ECE",
                 degree: "B.Tech",
-                eno: "default",
+                eno: "12345678910",
                 skills: [],
                 team: [],
                 projectId: "projectId",

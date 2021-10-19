@@ -21,3 +21,4 @@ export const loginValidationSchema = Yup.object({
         .required('Required'),
     password: Yup.string().required('Password is required'),
 });
+
