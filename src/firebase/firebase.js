@@ -11,5 +11,6 @@ export const auth = firebase.auth();
 export const storage = firebase.storage();
 export const database = {
     users: firestore.collection('users'),
+    projects: firestore.collection('projects'),
     getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp
 };
