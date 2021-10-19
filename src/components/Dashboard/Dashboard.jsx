@@ -22,7 +22,7 @@ export default function Dashboard() {
         return unsubscribe;
     }, [currentUser]);
 
-    const role = userData?.role; // This is just a placeholder value for now, later it will be the current user's role
+    const role = userData?.role;
 
     const displayDashboard = (role) => {
         switch (role) {
