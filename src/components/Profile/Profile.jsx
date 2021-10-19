@@ -77,28 +77,39 @@ export default function Profile() {
 
     return (
         <>
-            {
-                userData === null ? <LoadingScreen /> :
-                    <>
-                        <Navbar role={userData?.role} />
-                        <img src={ProfileImage} alt="profile" className="profile-img" />
-                        {/* <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={}>Update Image</button> */}
-                        <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={() => setEditable(!editable)}>EDIT</button>
-                        {
-                            editable === false ?
-                                <>
-                                    <p><span>Name: </span>{userData?.username}</p>
-                                    <p><span>Email: </span>{userData?.email}</p>
-                                    <p><span>College: </span>{userData?.college}</p>
-                                    <p><span>Role: </span>{userData?.role === 1 ? <>Student</> : userData?.role === 2 ? <>Teacher</> : <></>}</p>
-                                    <p>{userData?.role === 1 ? <><span>Degree: </span>{userData?.degree}</> : <></>}</p>
-                                    <p>{userData?.role === 1 ? <><span>Branch: </span>{userData?.branch}</> : <></>}</p>
-                                    <p>{userData?.role === 1 ? <><span>Enrollment No: </span>{userData?.eno}</> : <></>}</p>
-                                </>
-                                :
-                                <>
-                                    {
-                                        userData?.role === 1 ?
+            {userData === null ?
+                <LoadingScreen />
+                :
+                <>
+                    <Navbar role={userData?.role} />
+                    <div className="Profile">
+                        <div className="Profile-container">
+                            <div className="Profile-header">
+                                <img src={ProfileImage} alt="profile" className="Profile-img" />
+                                {/* <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={}>Update Image</button> */}
+                                <h1 style={{ color: "white" }}>{userData?.username}</h1>
+                                <h3 style={{ color: "rgba(255, 255, 255, 0.5)", paddingBottom: "20px" }}>{userData?.email}</h3>
+                            </div>
+                            <div className="Profile-body">
+                                {editable === false ?
+                                    <>
+                                        <div className="Profile-data">
+                                            <h3><span>College: </span>{userData?.college}</h3>
+                                            <h3><span>Role: </span>{userData?.role === 1 ? <>Student</> : userData?.role === 2 ? <>Teacher</> : <></>}</h3>
+                                            <h3>{userData?.role === 1 ? <><span>Degree: </span>{userData?.degree}</> : <></>}</h3>
+                                            <h3>{userData?.role === 1 ? <><span>Branch: </span>{userData?.branch}</> : <></>}</h3>
+                                            <h3>{userData?.role === 1 ? <><span>Enrollment No: </span>{userData?.eno}</> : <></>}</h3>
+                                            <button
+                                                onClick={() => setEditable(!editable)}
+                                                className="Profile-edit-btn"
+                                            >
+                                                <h3>Edit Profile</h3>
+                                            </button>
+                                        </div>
+                                    </>
+                                    :
+                                    <>
+                                        {userData?.role === 1 ?
                                             <>
                                                 <Formik
                                                     initialValues={{
@@ -146,7 +157,7 @@ export default function Profile() {
                                                             type="number"
                                                             placeholder="12345678910"
                                                         />
-
+                                                        <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={() => setEditable(!editable)}>Cancel</button>
                                                         <button disabled={loading} type="submit">Save</button>
                                                     </Form>
                                                 </Formik>
@@ -180,10 +191,13 @@ export default function Profile() {
                                                     </Form>
                                                 </Formik>
                                             </>
-                                    }
-                                </>
-                        }
-                    </>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </>
             }
         </>
     )
