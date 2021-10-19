@@ -73,6 +73,7 @@ export default function Profile() {
         }
 
         setLoading(false);
+        setEditable(false);
     }
 
     return (
@@ -124,7 +125,9 @@ export default function Profile() {
                                                         handleSave(values, 1);
                                                     }}
                                                 >
-                                                    <Form style={{ color: 'white' }}>
+                                                    <Form
+                                                        className="Profile-edit-form"
+                                                    >
                                                         <TextField
                                                             label="Name "
                                                             name="Name"
@@ -157,8 +160,21 @@ export default function Profile() {
                                                             type="number"
                                                             placeholder="12345678910"
                                                         />
-                                                        <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={() => setEditable(!editable)}>Cancel</button>
-                                                        <button disabled={loading} type="submit">Save</button>
+                                                        <div className="Profile-btn-grp">
+                                                            <button
+                                                                onClick={() => setEditable(!editable)}
+                                                                className="Profile-edit-cancel"
+                                                            >
+                                                                <h3>Cancel</h3>
+                                                            </button>
+                                                            <button
+                                                                disabled={loading}
+                                                                type="submit"
+                                                                className="Profile-edit-save"
+                                                            >
+                                                                <h3>Save</h3>
+                                                            </button>
+                                                        </div>
                                                     </Form>
                                                 </Formik>
                                             </>
@@ -174,7 +190,9 @@ export default function Profile() {
                                                         handleSave(values, 2);
                                                     }}
                                                 >
-                                                    <Form style={{ color: 'white' }}>
+                                                    <Form
+                                                        className="Profile-edit-form"
+                                                    >
                                                         <TextField
                                                             label="Name "
                                                             name="Name"
@@ -187,7 +205,21 @@ export default function Profile() {
                                                             <option value="MSIT">Maharaja Surajmal Institute of Technology</option>
                                                         </Spinner>
 
-                                                        <button disabled={loading} type="submit">Save</button>
+                                                        <div className="Profile-btn-grp">
+                                                            <button
+                                                                onClick={() => setEditable(!editable)}
+                                                                className="Profile-edit-cancel"
+                                                            >
+                                                                <h3>Cancel</h3>
+                                                            </button>
+                                                            <button
+                                                                disabled={loading}
+                                                                type="submit"
+                                                                className="Profile-edit-save"
+                                                            >
+                                                                <h3>Save</h3>
+                                                            </button>
+                                                        </div>
                                                     </Form>
                                                 </Formik>
                                             </>
