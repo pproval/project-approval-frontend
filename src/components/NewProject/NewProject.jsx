@@ -17,9 +17,6 @@ const TextField = ({ label, ...props }) => {
         <>
             <label htmlFor={props.id || props.name}>{label}</label>
             <input className="text-input" {...field} {...props} />
-            {/* {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null} */}
         </>
     );
 };
@@ -63,6 +60,7 @@ export default function NewProject() {
             console.log(uid);
 
             // When team will be assigned, loop over the team uids and update the project ID
+
             setLoading(false);
             history.push('/project');
         }
@@ -80,33 +78,52 @@ export default function NewProject() {
             {loading ? <LoadingScreen /> :
                 <>
                     {error !== null ? <>{error}</> : <></>}
-                    <Formik
-                        initialValues={{
-                            title: '',
-                            desc: '',
-                        }}
+                    <div className="NewProject">
+                        <div className="NewProject-container">
+                            <div className="NewProject-header">
+                                <h1
+                                    className="NewProject-title"
+                                    style={{ color: "white", fontSize: "40px" }}
+                                >
+                                    New Project
+                                </h1>
+                            </div>
+                            <div className="NewProject-body">
+                                <div className="NewProject-body-container">
+                                    <h2 style={{ color: "rgba(71, 71, 71, 1)" }}>Fill out the following form</h2>
+                                    <Formik
+                                        initialValues={{
+                                            title: '',
+                                            desc: '',
+                                        }}
 
-                        onSubmit={(values) => {
-                            handleProjectCreation(values);
-                        }}
-                    >
-                        <Form style={{ color: 'white' }}>
-                            <TextField
-                                label="Title "
-                                name="title"
-                                type="text"
-                                placeholder="Project Name"
-                            />
+                                        onSubmit={(values) => {
+                                            handleProjectCreation(values);
+                                        }}
+                                    >
+                                        <Form className="NewProject-form">
+                                            <TextField
+                                                name="title"
+                                                type="text"
+                                                placeholder="Project Title"
+                                                className="NewProject-form-text"
+                                            />
 
-                            <TextField
-                                label="Description "
-                                name="desc"
-                                type="text"
-                                placeholder="Describe what your project is about."
-                            />
-                            <button type="submit">Create</button>
-                        </Form>
-                    </Formik>
+                                            <TextField
+                                                name="desc"
+                                                type="text"
+                                                placeholder="Describe what your project is about. (About 200 words)"
+                                                className="NewProject-form-text"
+                                            />
+                                            <button type="submit" className="NewProject-button">
+                                                <h3>Create</h3>
+                                            </button>
+                                        </Form>
+                                    </Formik>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </>}
         </>
     )
