@@ -1,12 +1,34 @@
-import React from 'react'
+import React from 'react';
+// import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar'
+import AdminUserCard from '../AdminUserCard/AdminUserCard';
 
-// Styles
-import './StudentList.css'
+// Images
+import Profile from '../StudentDashboard/Images/Profile.png'
 
-export default function StudentList() {
+export default function StudentList({ userData }) {
     return (
-        <div>
-            <h1 style={{ color: "white" }}>This component will display all the users with a role of student</h1>
-        </div>
+        <>
+            <Navbar role={3} />
+            <div className="StudentDashboard">
+                <div className="StudentDashboard-container">
+                    <div className="StudentDashboard-header">
+                        <img src={Profile} alt="profile" className="profile-img" />
+                        <div className="StudentDashboard-metadata">
+                            <h1 style={{ fontSize: "40px" }}>{userData?.username}</h1>
+                            <h3 style={{ color: "rgba(4, 255, 171, 1)" }}>Admin </h3>
+                        </div>
+                    </div>
+                    <div className="TeacherDashboard-body">
+                        <div className="TeacherDashboard-body-container">
+                            <h2 className="TeacherDashboard-body-title" style={{ marginBottom: "20px" }}>Students</h2>
+                            {/* Map through all the users in the user collection and display only students*/}
+                            <AdminUserCard role={1} />
+                            <AdminUserCard role={1} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
