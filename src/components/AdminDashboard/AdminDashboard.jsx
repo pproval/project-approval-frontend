@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
+import AdminUserCard from '../AdminUserCard/AdminUserCard';
 
 // Images
 import Profile from '../StudentDashboard/Images/Profile.png'
@@ -10,7 +11,6 @@ import './AdminDashboard.css'
 
 export default function AdminDashboard({ userData }) {
     return (
-
         <>
             <Navbar role={3} />
             <div className="StudentDashboard">
@@ -24,12 +24,16 @@ export default function AdminDashboard({ userData }) {
                     </div>
                     <div className="TeacherDashboard-body">
                         <div className="TeacherDashboard-body-container">
-                            <h2 className="TeacherDashboard-body-title">Users</h2>
+                            <h2 className="TeacherDashboard-body-title" style={{ marginBottom: "20px" }}>Users</h2>
+                            {/* Map through all the users in the user collection and pass props accordingly*/}
+                            <AdminUserCard role={1} />
+                            <AdminUserCard role={2} />
+                            <AdminUserCard role={1} />
+                            <AdminUserCard role={2} />
                         </div>
                     </div>
                 </div>
             </div>
         </>
-
     )
 }

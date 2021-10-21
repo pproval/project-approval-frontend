@@ -1,0 +1,78 @@
+.AdminUserCard {
+  width: 100%;
+  height: 150px;
+  margin: 20px 0;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 84, 0.4);
+  color: rgba(0, 0, 84, 0.6);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AdminUserCard-details {
+  /* background-color: blueviolet; */
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.AdminUserCard-student,
+.AdminUserCard-teacher {
+  width: 80px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.AdminUserCard-student {
+  background-color: rgba(0, 0, 84, 0.6);
+}
+
+.AdminUserCard-teacher {
+  background-color: rgba(4, 255, 171, 1);
+}
+
+.AdminUserCard-btns {
+  height: 100%;
+  /* background-color: blueviolet; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AdminUserCard-student-btn,
+.AdminUserCard-teacher-btn {
+  margin: 0;
+  width: 170px;
+  background-color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.AdminUserCard-teacher-btn {
+  color: rgba(4, 255, 171, 1);
+  border: 2px solid rgba(4, 255, 171, 1);
+}
+
+.AdminUserCard-teacher-btn:hover {
+  color: white;
+  background-color: rgba(4, 255, 171, 1);
+}
+
+.AdminUserCard-student-btn {
+  color: rgba(0, 0, 84, 0.6);
+  border: 2px solid rgba(0, 0, 84, 0.6);
+}
+
+.AdminUserCard-student-btn:hover {
+  color: white;
+  background-color: rgba(0, 0, 84, 0.6);
+  border: none;
+}

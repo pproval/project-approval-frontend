@@ -87,7 +87,6 @@ export default function Profile() {
                         <div className="Profile-container">
                             <div className="Profile-header">
                                 <img src={ProfileImage} alt="profile" className="Profile-img" />
-                                {/* <button style={{ color: 'black', backgroundColor: 'rgba(4, 255, 171)', width: '50px' }} onClick={}>Update Image</button> */}
                                 <h1 style={{ color: "white" }}>{userData?.username}</h1>
                                 <h3 style={{ color: "rgba(255, 255, 255, 0.5)", paddingBottom: "20px" }}>{userData?.email}</h3>
                             </div>
