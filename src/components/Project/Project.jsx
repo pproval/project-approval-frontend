@@ -45,7 +45,7 @@ export default function Project() {
                         <form className="Project-doc-form">
                             <input type="file" className="Project-doc-input"></input>
                         </form>
-                        <a href="" className="Project-doc-view"><h3>Re-Upload</h3></a>
+                        <a href="" className="Project-doc-reupload"><h3>Re-Upload</h3></a>
                         <a href="" className="Project-doc-view"><h3>View</h3></a>
                     </div>
                 </div>

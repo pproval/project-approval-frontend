@@ -60,6 +60,11 @@
   border-radius: 5px;
 }
 
+/* .NewProject-form-desc {
+  align-items: flex-start;
+  height: 200px;
+} */
+
 .NewProject-button {
   margin: 10px 0;
   width: 200px;
