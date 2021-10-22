@@ -27,7 +27,7 @@ export default function Project() {
             console.log(file);
             setFile(file);
         }
-        else if(file.type !== 'application/pdf') {
+        else if (file.type !== 'application/pdf') {
             console.log("Only pdf files are supported");
         }
     }
@@ -80,7 +80,9 @@ export default function Project() {
     }
 
     const viewFile = (e, synopsis) => {
-        
+        if (synopsis !== null && synopsis !== undefined) {
+            window.open(synopsis);
+        }
     }
 
     const displaySynopsis = (status) => {
