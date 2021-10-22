@@ -113,7 +113,7 @@ export default function NewProject() {
                                                 name="desc"
                                                 type="text"
                                                 placeholder="Describe what your project is about. (About 200 words)"
-                                                className="NewProject-form-text"
+                                                className="NewProject-form-text NewProject-form-desc"
                                             />
                                             <button type="submit" className="NewProject-button">
                                                 <h3>Create</h3>

@@ -27,7 +27,9 @@
   /* background-color: chartreuse; */
   margin-top: 8em;
 }
-input {
+.firstName,
+.lastName,
+.confirmPassword {
   margin-top: 6px;
   width: 72%;
   height: 50px;

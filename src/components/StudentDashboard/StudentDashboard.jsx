@@ -11,6 +11,28 @@ import './StudentDashboard.css';
 
 function StudentDashboard({ userData }) {
 
+    const displayProjectCreate = (userData) => {
+        // If the user does not have any project, then they will see the create project option
+        if (userData?.projectId === "projectId") {
+            return (
+                <div>
+                    <Link to="/project/new" className="project-add">
+                        <img src={Add} alt="add" style={{ height: "50px" }} />
+                        <h3>Create Project</h3>
+                    </Link>
+                </div>
+            )
+        }
+        // Else they will see the project
+        else {
+            return (
+                <div className="project">
+                    <h3 style={{ color: "white" }}>Project Name</h3>
+                    <Link to="/project" className="project-view-btn"><h3>View</h3></Link>
+                </div>
+            )
+        }
+    }
     return (
         <>
             <Navbar role={1} />
@@ -27,14 +49,7 @@ function StudentDashboard({ userData }) {
                         <div className="StudentDashboard-body-container">
                             <h2 className="StudentDashboard-body-title">Project</h2>
                             <div className="StudentDashboard-projects">
-                                <div className="project">
-                                    <h3 style={{ color: "white" }}>Project Name</h3>
-                                    <Link to="/project" className="project-view-btn"><h3>View</h3></Link>
-                                </div>
-                                <Link to="/project/new" className="project-add">
-                                    <img src={Add} alt="add" style={{ height: "50px" }} />
-                                    <h3>Create Project</h3>
-                                </Link>
+                                {displayProjectCreate(userData)}
                             </div>
                         </div>
                     </div>

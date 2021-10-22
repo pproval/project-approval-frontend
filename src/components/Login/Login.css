@@ -27,13 +27,16 @@
   /* background-color: chartreuse; */
   margin-top: 20em;
 }
+
 .headerLogin {
   text-size-adjust: 150px;
   color: whitesmoke;
   align-self: center;
   margin: 0px 0px 50px 160px;
 }
-input {
+
+.email,
+.password {
   margin-top: 6px;
   width: 72%;
   height: 50px;
