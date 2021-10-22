@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthProvider';
-import { database } from '../../firebase/firebase';
+import { database, storage } from '../../firebase/firebase';
 import { Link, useHistory } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
 import TeamMemberFlat from '../TeamMember/TeamMemberFlat'
@@ -16,7 +16,72 @@ export default function Project() {
     const history = useHistory();
     const { currentUser } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
+    const [file, setFile] = useState(null);
     const [projectData, setProjectData] = useState();
+    const [error, setError] = useState(null);
+
+    const handleFileUpload = (e) => {
+        console.log("handleFileUpload");
+        let file = e.target.files[0];
+        if (file != null && file.type === 'application/pdf') {
+            console.log(file);
+            setFile(file);
+        }
+        else if(file.type !== 'application/pdf') {
+            console.log("Only pdf files are supported");
+        }
+    }
+
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            let pid = projectData?.pid;
+            console.log(pid);
+
+            // Creates projects/pid directories and stores file with synopsis name
+            const uploadTaskListener = storage.ref(`/projects/${pid}/synopsis`).put(file);
+            // Register three observers:
+            // 1. 'state_changed' observer, called any time the state changes -- tracks progress
+            // 2. Error observer, called on failure -- error handler
+            // 3. Completion observer, called on successful completion -- task completion
+
+            uploadTaskListener.on('state_changed', progressTracker, errorHandler, taskSuccessful);
+
+            function progressTracker(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+            }
+
+            function errorHandler(err) {
+                setError(err.message);
+                setTimeout(() => setError(''), 2000);
+                setLoading(false);
+            }
+
+            async function taskSuccessful() {
+                // link of synopsis just stored
+                let downloadURL = await uploadTaskListener.snapshot.ref.getDownloadURL();
+                console.log(downloadURL);
+                await database.projects.doc(pid).update({
+                    synopsis: downloadURL,
+                    status: 1,
+                });
+                setLoading(false);
+                console.log("Synopsis uploaded");
+                history.push('/project');
+            }
+        }
+        catch (err) {
+            setError(err.message);
+            setTimeout(() => setError(''), 2000);
+            setLoading(false);
+        }
+    }
+
+    const viewFile = (e, synopsis) => {
+        
+    }
 
     const displaySynopsis = (status) => {
         // Status 0 means that the project has been initiated but the synopsis has not been submitted yet
@@ -26,9 +91,9 @@ export default function Project() {
                     <h2>Upload Synopsis</h2>
                     <div className="Project-doc-box">
                         <form className="Project-doc-form">
-                            <input type="file" className="Project-doc-input"></input>
+                            <input onChange={(e) => handleFileUpload(e)} type="file" className="Project-doc-input"></input>
                         </form>
-                        <a href="" className="Project-doc-view"><h3>Upload</h3></a>
+                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e)} className="Project-doc-view"><h3>Upload</h3></button>
                     </div>
                 </div>
             )
@@ -43,10 +108,10 @@ export default function Project() {
                     <div className="Project-doc-box">
                         <h3>Minor Project Synopsis-Project Approval System</h3>
                         <form className="Project-doc-form">
-                            <input type="file" className="Project-doc-input"></input>
+                            <input type="file" onChange={(e) => handleFileUpload(e)} className="Project-doc-input"></input>
                         </form>
-                        <a href="" className="Project-doc-reupload"><h3>Re-Upload</h3></a>
-                        <a href="" className="Project-doc-view"><h3>View</h3></a>
+                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e)} className="Project-doc-reupload"><h3>Re-Upload</h3></button>
+                        <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
                     </div>
                 </div>
             )
@@ -128,9 +193,11 @@ export default function Project() {
     }
 
     useEffect(() => {
+        setLoading(true);
         const unsubscribe = database.users.doc(currentUser.uid).onSnapshot((doc) => {
             setUserData(doc.data());
         });
+        setLoading(false);
         return unsubscribe;
     }, [currentUser]);
 
