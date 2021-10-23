@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { database } from '../../firebase/firebase';
 
 // Styles 
 import './AdminUserCard.css'
 
-export default function AdminUserCard({ role }) {
+export default function AdminUserCard({ userData, role }) {
 
+    const [loading, setLoading] = useState(false);
+    // Function to change user role
+    const changeUserRole = async (value) => {
+        setLoading(true);
+        await database.users.doc(userData?.userId).update({
+            role: value,
+        });
+        setLoading(false);
+    }
     // Function to display the role label next to the username
     const displayLabel = (role) => {
         switch (role) {
@@ -23,12 +33,12 @@ export default function AdminUserCard({ role }) {
             case 1: return (
                 // Add event listner to the following button to change the role of the user
                 // from student to teacher
-                <button className="AdminUserCard-teacher-btn"><h3>Make Teacher</h3></button>
+                <button disabled={loading} onClick={() => changeUserRole(2)} className="AdminUserCard-teacher-btn"><h3>Make Teacher</h3></button>
             )
             case 2: return (
                 // Add event listner to the following button to change the role of the user
                 // from teacher to student
-                <button className="AdminUserCard-student-btn"><h3>Make Student</h3></button>
+                <button disabled={loading} onClick={() => changeUserRole(1)} className="AdminUserCard-student-btn"><h3>Make Student</h3></button>
             )
         }
     }
@@ -36,10 +46,10 @@ export default function AdminUserCard({ role }) {
         <div className="AdminUserCard">
             <div className="AdminUserCard-details">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <h2 style={{ marginRight: "20px" }}>FirstName Lastname</h2>
+                    <h2 style={{ marginRight: "20px" }}>{userData?.username}</h2>
                     {displayLabel(role)}
                 </div>
-                <h3>email@id.com</h3>
+                <h3>{userData?.email}</h3>
             </div>
             <div className="AdminUserCard-btns">
                 {displayButton(role)}
