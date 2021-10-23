@@ -123,7 +123,7 @@ export default function Project() {
                         <form className="Project-doc-form">
                             <input onChange={(e) => handleFileUpload(e)} type="file" className="Project-doc-input"></input>
                         </form>
-                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e)} className="Project-doc-view"><h3>Upload</h3></button>
+                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e, 0)} className="Project-doc-view"><h3>Upload</h3></button>
                     </div>
                 </div>
             )
@@ -140,7 +140,7 @@ export default function Project() {
                         <form className="Project-doc-form">
                             <input type="file" onChange={(e) => handleFileUpload(e)} className="Project-doc-input"></input>
                         </form>
-                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e)} className="Project-doc-reupload"><h3>Re-Upload</h3></button>
+                        <button disabled={file === null ? true : file.type === 'application/pdf' ? false : true} onClick={(e) => handleUpload(e, 1)} className="Project-doc-reupload"><h3>Re-Upload</h3></button>
                         <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
                     </div>
                 </div>
