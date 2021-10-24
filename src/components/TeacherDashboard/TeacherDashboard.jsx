@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
+import TeacherProjectCard from '../TeacherProjectCard/TeacherProjectCard';
 
 // Images
 import Profile from '../StudentDashboard/Images/Profile.png'
@@ -27,27 +28,10 @@ export default function TeacherDashboard({ userData }) {
                         <div className="TeacherDashboard-body-container">
                             <h2 className="TeacherDashboard-body-title">Projects</h2>
                             <div className="TeacherDashboard-projectlist">
-                                <div className="TeacherDashboard-project">
-                                    <div>
-                                        <h2 style={{ color: "white" }}>Project Title</h2>
-                                        <h4 style={{ color: "rgba(255, 255, 255, 0.5)" }}>Project Status: Synopsis Submitted</h4>
-                                    </div>
-                                    <Link to="/project" className="Project-doc-view"><h3>View</h3></Link>
-                                </div>
-                                <div className="TeacherDashboard-project">
-                                    <div>
-                                        <h2 style={{ color: "white" }}>Project Title</h2>
-                                        <h4 style={{ color: "rgba(255, 255, 255, 0.5)" }}>Project Status: Synopsis Submitted</h4>
-                                    </div>
-                                    <Link to="/project" className="Project-doc-view"><h3>View</h3></Link>
-                                </div>
-                                <div className="TeacherDashboard-project">
-                                    <div>
-                                        <h2 style={{ color: "white" }}>Project Title</h2>
-                                        <h4 style={{ color: "rgba(255, 255, 255, 0.5)" }}>Project Status: Synopsis Submitted</h4>
-                                    </div>
-                                    <Link to="/project" className="Project-doc-view"><h3>View</h3></Link>
-                                </div>
+                                {/* Map through all the projects from projectList of teacaher and pass props accordingly*/}
+                                <TeacherProjectCard />
+                                <TeacherProjectCard />
+                                <TeacherProjectCard />
                             </div>
                         </div>
                     </div>
