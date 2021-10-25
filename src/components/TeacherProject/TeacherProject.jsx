@@ -9,12 +9,33 @@ import TeamMemberFlat from '../TeamMember/TeamMemberFlat'
 export default function TeacherProject(props) {
     const projectId = props.match.params.projectId;
     const [projectData, setProjectData] = useState();
+    const [loading, setLoading] = useState(false);
 
     const viewFile = (e, URL) => {
         if (URL !== null && URL !== undefined) {
             window.open(URL);
         }
     }
+
+    const changeStatus = async (e, code) => {
+        setLoading(true);
+        if(code === 1) {
+            await database.projects.doc(projectId).update({
+                status: 2,
+            })
+        }
+        // else if(code === 3) {
+        //     await database.projects.doc(projectId).update({
+        //         status: 4,
+        //     })
+        // }
+        // else if(code === 4) {
+        //     await database.projects.doc(projectId).update({
+        //         status: 5,
+        //     })
+        // }
+        setLoading(false);
+    } 
 
     const displaySynopsis = (status) => {
         // Status 1 means that the synopsis has been uploaded and it can be approved if seems ok
@@ -24,7 +45,7 @@ export default function TeacherProject(props) {
                     <h2>Synopsis</h2>
                     <div className="Project-doc-box">
                         <h3>Minor Project Synopsis-Project Approval System</h3>
-                        <button className="Project-doc-reupload"><h3>Approve</h3></button>
+                        <button disabled={loading} onClick={(e) => changeStatus(e, 1)} className="Project-doc-reupload"><h3>Approve</h3></button>
                         <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
                     </div>
                 </div>
