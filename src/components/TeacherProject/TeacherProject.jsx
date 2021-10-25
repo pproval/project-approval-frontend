@@ -8,6 +8,10 @@ import ProjectStatus from '../ProjectStatus/ProjectStatus'
 import TeamMemberFlat from '../TeamMember/TeamMemberFlat'
 
 
+// Styles
+import './TeacherProject.css'
+
+
 export default function TeacherProject(props) {
     const projectId = props.match.params.projectId
     const [loading, setLoading] = useState(true);
@@ -32,8 +36,17 @@ export default function TeacherProject(props) {
                     <h2>Synopsis</h2>
                     <div className="Project-doc-box">
                         <h3>Minor Project Synopsis-Project Approval System</h3>
-                        <button className="Project-doc-reupload"><h3>Approve</h3></button>
-                        <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
+                        <div className="TeacherProject-btn-grp">
+                            <button className="Project-doc-reupload">
+                                <h3>Approve</h3>
+                            </button>
+                            <button
+                                onClick={(e) => viewFile(e, projectData?.synopsis)}
+                                className="Project-doc-view"
+                            >
+                                <h3>View</h3>
+                            </button>
+                        </div>
                     </div>
                 </div>
             )
@@ -84,6 +97,17 @@ export default function TeacherProject(props) {
                 </div>
             )
         }
+    }
+
+    const displayRemarks = () => {
+        return (
+            <div className="Project-doc">
+                <h2>Remarks</h2>
+                <div className="Project-doc-box">
+                    <h3>{userData?.username}: </h3>
+                </div>
+            </div>
+        )
     }
 
     useEffect(() => {
@@ -160,6 +184,7 @@ export default function TeacherProject(props) {
                                             {displaySynopsis(projectData?.status)}
                                             {displayProgressReport(projectData?.status)}
                                             {displayFinalReport(projectData?.status)}
+                                            {displayRemarks()}
                                         </div>
                                     </div>
                                 </div>

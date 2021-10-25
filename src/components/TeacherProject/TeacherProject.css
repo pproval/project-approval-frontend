@@ -1,0 +1,7 @@
+.TeacherProject-btn-grp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  /* background-color: blanchedalmond; */
+}
