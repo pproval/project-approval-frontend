@@ -49,7 +49,7 @@ function Register() {
             const userObject = {
                 email: values.email,
                 userId: uid,
-                username: values.firstName + " " + values.lastName,
+                username: values.firstName.trim() + " " + values.lastName.trim(),
                 role: 1,
                 college: "MSIT",
                 branch: "ECE",

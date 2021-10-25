@@ -25,15 +25,56 @@ export default function NewProject() {
 
     const { currentUser } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
+    const [students, setStudents] = useState();
+    const [teachers, setTeachers] = useState();
     const history = useHistory();
 
+    useEffect(() => {
+        const unsubscribe = database.users.doc(currentUser.uid).onSnapshot((doc) => {
+            setUserData(doc.data());
+        });
+        return unsubscribe;
+    }, [currentUser]);
+
+    useEffect(() => {
+        let studentsArr;
+        let teachersArr;
+        const unsubscribe = database.users.orderBy('createdAt', 'desc').onSnapshot((querySnapshot) => {
+            studentsArr = [];
+            teachersArr = [];
+            querySnapshot.forEach((doc) => {
+                if (doc.data().role === 1) studentsArr.push({ ...doc.data() });
+                else if (doc.data().role === 2) teachersArr.push({ ...doc.data() });
+            })
+            // console.log(studentsArr);
+            // console.log(teachersArr);
+            setStudents(studentsArr);
+            setTeachers(teachersArr);
+        });
+        return unsubscribe;
+    }, []);
+
     const handleProjectCreation = async (values) => {
-        console.log(values);
+        // console.log(values);
+        let mentor = teachers.filter((teacher) => {
+            return values.mentor === teacher.username;
+        });
+        // console.log(mentor);
+        let team = [{ name: userData?.username, uid: userData?.userId }];
+        students.forEach((student) => {
+            if(student.eno === values.one || student.eno === values.two || student.eno === values.three) {
+                team.push({name: student.username, uid: student.userId});
+            }
+        })
+
+        // console.log(team);
+
         try {
             setLoading(true);
-            let uid = currentUser.uid;
-            console.log(uid);
+            let uid = userData?.userId;
+            // console.log(uid);
             let projectId = uuidv4();
 
             const projectObject = {
@@ -42,8 +83,8 @@ export default function NewProject() {
                 title: values.title,
                 description: values.desc,
                 createdBy: uid,
-                team: [uid, "2", "3", "4"],
-                mentor: "",
+                team: team,
+                mentor: mentor[0]?.username,
                 synopsis: "Synopsis URL",
                 progressReport: "PR URL",
                 finalReport: "Final Report URL",
@@ -53,14 +94,18 @@ export default function NewProject() {
             }
 
             await database.projects.doc(projectId).set(projectObject);
-            console.log(uid);
-            await database.users.doc(uid).update({
-                projectId: projectId,
+            await database.users.doc(mentor[0]?.userId).update({
+                projectList: [...mentor[0]?.projectList, projectId]
             });
-            console.log(uid);
 
-            // When team will be assigned, loop over the team uids and update the project ID
-
+            team.forEach(async (member, index, team) => {
+                await database.users.doc(member.uid).update({
+                    projectId: projectId,
+                    team: team
+                });
+            })
+            
+            // console.log(uid);
             setLoading(false);
             history.push('/project');
         }
@@ -95,6 +140,10 @@ export default function NewProject() {
                                         initialValues={{
                                             title: '',
                                             desc: '',
+                                            mentor: '',
+                                            one: '',
+                                            two: '',
+                                            three: '',
                                         }}
 
                                         onSubmit={(values) => {
@@ -115,6 +164,35 @@ export default function NewProject() {
                                                 placeholder="Describe what your project is about. (About 200 words)"
                                                 className="NewProject-form-text NewProject-form-desc"
                                             />
+
+                                            <TextField
+                                                name="mentor"
+                                                type="text"
+                                                placeholder="Please enter your mentor's full name"
+                                                className="NewProject-form-text NewProject-form-desc"
+                                            />
+
+                                            <TextField
+                                                name="one"
+                                                type="number"
+                                                placeholder="Enter enrollment number of your teammate"
+                                                className="NewProject-form-text NewProject-form-desc"
+                                            />
+
+                                            <TextField
+                                                name="two"
+                                                type="number"
+                                                placeholder="Enter enrollment number of your teammate"
+                                                className="NewProject-form-text NewProject-form-desc"
+                                            />
+
+                                            <TextField
+                                                name="three"
+                                                type="number"
+                                                placeholder="Enter enrollment number of your teammate"
+                                                className="NewProject-form-text NewProject-form-desc"
+                                            />
+
                                             <button type="submit" className="NewProject-button">
                                                 <h3>Create</h3>
                                             </button>
