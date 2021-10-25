@@ -287,7 +287,7 @@ export default function Project() {
                                                         <div className="Project-team-box">
                                                             {
                                                                 projectData.team.map((member) => {
-                                                                    return <TeamMemberFlat member={member?.name} />
+                                                                    return <TeamMemberFlat key={member?.uid} member={member?.name} />
                                                                 })
                                                             }
                                                         </div>

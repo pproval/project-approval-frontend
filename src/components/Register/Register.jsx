@@ -4,6 +4,7 @@ import { Formik, Form, useField } from 'formik';
 import { signUpValidationSchema } from '../../validations/validationSchema';
 import { database } from '../../firebase/firebase';
 import { AuthContext } from '../../context/AuthProvider';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import Navbar from '../Navbar/Navbar';
 import RegisterFigure from '../Figures/RegisterFigure/RegisterFigure';
 
@@ -79,7 +80,7 @@ function Register() {
     return (
         <>
             {error ? <h1>{error}</h1> : <></>}
-            {loading ? <h1>Loading...</h1> :
+            {loading ? <LoadingScreen /> :
                 <>
                     <Navbar />
 

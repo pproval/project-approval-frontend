@@ -43,6 +43,7 @@ export default function Team() {
                                     {
                                         team.map((member) => {
                                             return <TeamMember
+                                                key={member.uid}
                                                 name={member.name}
                                                 college={member.college}
                                                 course={member.course}
