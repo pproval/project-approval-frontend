@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthProvider';
-import { database, storage } from '../../firebase/firebase';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { database } from '../../firebase/firebase';
 import Navbar from '../Navbar/Navbar'
-import LoadingScreen from '../LoadingScreen/LoadingScreen'
 import ProjectStatus from '../ProjectStatus/ProjectStatus'
 import TeamMemberFlat from '../TeamMember/TeamMemberFlat'
 
@@ -13,19 +11,34 @@ import './TeacherProject.css'
 
 
 export default function TeacherProject(props) {
-    const projectId = props.match.params.projectId
-    const [loading, setLoading] = useState(true);
-    const history = useHistory();
-    const { currentUser } = useContext(AuthContext);
-    const [userData, setUserData] = useState(null);
-    const [file, setFile] = useState(null);
+    const projectId = props.match.params.projectId;
     const [projectData, setProjectData] = useState();
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const viewFile = (e, URL) => {
         if (URL !== null && URL !== undefined) {
             window.open(URL);
         }
+    }
+
+    const changeStatus = async (e, code) => {
+        setLoading(true);
+        if (code === 1) {
+            await database.projects.doc(projectId).update({
+                status: 2,
+            })
+        }
+        // else if(code === 3) {
+        //     await database.projects.doc(projectId).update({
+        //         status: 4,
+        //     })
+        // }
+        // else if(code === 4) {
+        //     await database.projects.doc(projectId).update({
+        //         status: 5,
+        //     })
+        // }
+        setLoading(false);
     }
 
     const displaySynopsis = (status) => {
@@ -47,6 +60,8 @@ export default function TeacherProject(props) {
                                 <h3>View</h3>
                             </button>
                         </div>
+                        <button disabled={loading} onClick={(e) => changeStatus(e, 1)} className="Project-doc-reupload"><h3>Approve</h3></button>
+                        <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
                     </div>
                 </div>
             )
@@ -111,89 +126,84 @@ export default function TeacherProject(props) {
     }
 
     useEffect(() => {
-        setLoading(true);
-        const unsubscribe = database.users.doc(currentUser.uid).onSnapshot((doc) => {
-            setUserData(doc.data());
-        });
-        setLoading(false);
-        return unsubscribe;
-    }, [currentUser]);
-
-    useEffect(() => {
-        setLoading(true);
         const unsubscribe = database.projects.doc(projectId).onSnapshot((doc) => {
-            // console.log(doc.data());
             setProjectData(doc.data());
         });
-        setLoading(false);
         return unsubscribe;
-    }, [userData]);
+    }, [projectId]);
 
     return (
         <>
-            {loading ? <LoadingScreen /> :
-                <>
-                    <Navbar role={2} />
-                    {
-                        projectData === undefined ?
-                            <div>
-                                <h1 style={{ color: 'white' }}>You need to create a Project First!</h1>
-                                <Link to="/project/new">
-                                    <button>Create Project</button>
-                                </Link>
-                            </div>
-                            :
-                            <div className="Project">
-                                <div className="Project-container">
-                                    <div className="Project-header">
-                                        <h1 className="Project-title">{projectData?.title}</h1>
-                                        <h3 className="Project-creator">
-                                            Created By: {projectData?.createdBy}
-                                        </h3>
-                                    </div>
-                                    <div className="Project-body">
-                                        <div className="Project-body-container">
-                                            <div className="Project-status">
-                                                <h2>Status</h2>
-                                                <div className="Project-status-box">
-                                                    <ProjectStatus status={projectData?.status} />
-                                                </div>
-                                            </div>
-                                            <div className="Project-description">
-                                                <h2>Description</h2>
-                                                <div className="Project-description-box">
-                                                    <h4 style={{ textAlign: "justify" }}>
-                                                        {projectData?.description}
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                            <div className="Project-mentor">
-                                                <h2>Mentor</h2>
-                                                <TeamMemberFlat />
-                                            </div>
-                                            <div className="Project-team">
-                                                <h2>Team</h2>
-                                                <div className="Project-team-box">
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
-                                                </div>
-                                                <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
-                                            </div>
-                                            {displaySynopsis(projectData?.status)}
-                                            {displayProgressReport(projectData?.status)}
-                                            {displayFinalReport(projectData?.status)}
-                                            {displayRemarks()}
-                                        </div>
+            <Navbar role={2} />
+            {projectData === undefined ?
+                <><h1 style={{ color: 'white' }}>Loading...</h1></>
+                :
+                <div className="Project">
+                    <div className="Project-container">
+                        <div className="Project-header">
+                            <h1 className="Project-title">{projectData?.title}</h1>
+                            <h3 className="Project-creator">
+                                Created By: {projectData?.createdBy}
+                            </h3>
+                        </div>
+                        <div className="Project-body">
+                            <div className="Project-body-container">
+                                <div className="Project-status">
+                                    <h2>Status</h2>
+                                    <div className="Project-status-box">
+                                        <ProjectStatus status={projectData?.status} />
                                     </div>
                                 </div>
-                            </div>
-
-                    }
-
-                </>}
-
+                                <div className="Project-description">
+                                    <h2>Description</h2>
+                                    <div className="Project-description-box">
+                                        <h4 style={{ textAlign: "justify" }}>
+                                            {projectData?.description}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div className="Project-body">
+                                    <div className="Project-body-container">
+                                        <div className="Project-status">
+                                            <h2>Status</h2>
+                                            <div className="Project-status-box">
+                                                <ProjectStatus status={projectData?.status} />
+                                            </div>
+                                        </div>
+                                        <div className="Project-description">
+                                            <h2>Description</h2>
+                                            <div className="Project-description-box">
+                                                <h4 style={{ textAlign: "justify" }}>
+                                                    {projectData?.description}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div className="Project-mentor">
+                                            <h2>Mentor</h2>
+                                            <TeamMemberFlat member={projectData?.mentor} />
+                                        </div>
+                                        <div className="Project-team">
+                                            <h2>Team</h2>
+                                            <div className="Project-team-box">
+                                                {
+                                                    projectData.team.map((member) => {
+                                                        return <TeamMemberFlat key={member?.uid} member={member?.name} />
+                                                    })
+                                                }
+                                            </div>
+                                            <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
+                                        </div>
+                                        {displaySynopsis(projectData?.status)}
+                                        {displayProgressReport(projectData?.status)}
+                                        {displayFinalReport(projectData?.status)}
+                                        {displayRemarks()}
+                                    </div>
+                                </div>
+                            </div >
+                        </div >
+                    </div>
+                </div>
+            }
         </>
     )
 }
