@@ -112,12 +112,7 @@ export default function TeacherProject(props) {
                     <Navbar role={2} />
                     {
                         projectData === undefined ?
-                            <div>
-                                <h1 style={{ color: 'white' }}>You need to create a Project First!</h1>
-                                <Link to="/project/new">
-                                    <button>Create Project</button>
-                                </Link>
-                            </div>
+                            <><h1 style={{ color: 'white' }}>Loading...</h1></>
                             :
                             <div className="Project">
                                 <div className="Project-container">

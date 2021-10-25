@@ -58,6 +58,7 @@ function Register() {
                 skills: [],
                 team: [],
                 projectId: "projectId",
+                projectList: [],
                 createdAt: database.getCurrentTimeStamp(),
             }
 

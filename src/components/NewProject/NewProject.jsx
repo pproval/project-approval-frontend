@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Formik, Form, useField } from 'formik';
 import { AuthContext } from '../../context/AuthProvider';
-import { storage, database } from '../../firebase/firebase';
+import { database } from '../../firebase/firebase';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 // import * as Yup from 'yup';
