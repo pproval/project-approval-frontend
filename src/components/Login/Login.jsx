@@ -5,6 +5,7 @@ import { loginValidationSchema } from '../../validations/validationSchema';
 import { AuthContext } from '../../context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
 import LoginFigure from '../Figures/LoginFigure/LoginFigure';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 // Styles
 import './Login.css'
@@ -53,7 +54,7 @@ function Login() {
     return (
         <>
             {error ? <h1>{error}</h1> : <></>}
-            {loading ? <h1>Loading...</h1> :
+            {loading ? <LoadingScreen /> :
                 <>
                     <Navbar />
 

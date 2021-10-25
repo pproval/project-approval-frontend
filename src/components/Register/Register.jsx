@@ -4,6 +4,7 @@ import { Formik, Form, useField } from 'formik';
 import { signUpValidationSchema } from '../../validations/validationSchema';
 import { database } from '../../firebase/firebase';
 import { AuthContext } from '../../context/AuthProvider';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import Navbar from '../Navbar/Navbar';
 import RegisterFigure from '../Figures/RegisterFigure/RegisterFigure';
 
@@ -49,7 +50,7 @@ function Register() {
             const userObject = {
                 email: values.email,
                 userId: uid,
-                username: values.firstName + " " + values.lastName,
+                username: values.firstName.trim() + " " + values.lastName.trim(),
                 role: 1,
                 college: "MSIT",
                 branch: "ECE",
@@ -58,6 +59,9 @@ function Register() {
                 skills: [],
                 team: [],
                 projectId: "projectId",
+                teamName: "Team Name",
+                projectTitle: "Project Name",
+                projectList: [],
                 createdAt: database.getCurrentTimeStamp(),
             }
 
@@ -76,7 +80,7 @@ function Register() {
     return (
         <>
             {error ? <h1>{error}</h1> : <></>}
-            {loading ? <h1>Loading...</h1> :
+            {loading ? <LoadingScreen /> :
                 <>
                     <Navbar />
 
