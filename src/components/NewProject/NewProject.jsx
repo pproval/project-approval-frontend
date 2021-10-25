@@ -93,11 +93,12 @@ export default function NewProject() {
             let projectId = uuidv4();
 
             const projectObject = {
+                createdAt: database.getCurrentTimeStamp(),
                 pid: projectId,
                 status: 0,
                 title: values.title,
                 description: values.desc,
-                createdBy: uid,
+                createdBy: userData?.username,
                 teamName: values.teamName,
                 team: team,
                 mentor: mentor[0]?.username,

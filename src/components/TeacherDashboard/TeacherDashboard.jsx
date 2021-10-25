@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { database } from '../../firebase/firebase';
 // import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
 import TeacherProjectCard from '../TeacherProjectCard/TeacherProjectCard';
@@ -10,6 +11,26 @@ import Profile from '../StudentDashboard/Images/Profile.png'
 import './TeacherDashboard.css'
 
 export default function TeacherDashboard({ userData }) {
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        let projectIDs = userData?.projectList;
+        let projectsArr;
+
+        const unsubscribe = database.projects.orderBy('createdAt', 'desc').onSnapshot((querySnapshot) => {
+            projectsArr = [];
+            querySnapshot.forEach((doc) => {
+                let pid = doc.data().pid;
+                if (projectIDs.includes(pid)) {
+                    projectsArr.push(doc.data());
+                }
+            })
+            setProjects(projectsArr);
+        });
+
+        return unsubscribe;
+    }, []);
 
     return (
 
@@ -28,10 +49,16 @@ export default function TeacherDashboard({ userData }) {
                         <div className="TeacherDashboard-body-container">
                             <h2 className="TeacherDashboard-body-title">Projects</h2>
                             <div className="TeacherDashboard-projectlist">
-                                {/* Map through all the projects from projectList of teacaher and pass props accordingly*/}
-                                <TeacherProjectCard />
-                                <TeacherProjectCard />
-                                <TeacherProjectCard />
+                                {
+                                    projects.length === 0 ? <><h1>No projects found under your name! Please check later.</h1></> :
+                                        <>
+                                            {
+                                                projects.map((project) => {
+                                                    return <TeacherProjectCard projectData={project} />
+                                                })
+                                            }
+                                        </>
+                                }
                             </div>
                         </div>
                     </div>
