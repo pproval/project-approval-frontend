@@ -62,10 +62,25 @@ export default function NewProject() {
             return values.mentor === teacher.username;
         });
         // console.log(mentor);
-        let team = [{ name: userData?.username, uid: userData?.userId }];
+        let team = [{
+            name: userData?.username,
+            uid: userData?.userId,
+            college: userData?.college,
+            eno: userData?.eno,
+            course: userData?.degree,
+            branch: userData?.branch
+        }];
+        
         students.forEach((student) => {
-            if(student.eno === values.one || student.eno === values.two || student.eno === values.three) {
-                team.push({name: student.username, uid: student.userId});
+            if (student.eno === values.one || student.eno === values.two || student.eno === values.three) {
+                team.push({
+                    name: student.username,
+                    uid: student.userId,
+                    college: student.college,
+                    eno: student.eno,
+                    course: student.degree,
+                    branch: student.branch
+                });
             }
         })
 
@@ -83,6 +98,7 @@ export default function NewProject() {
                 title: values.title,
                 description: values.desc,
                 createdBy: uid,
+                teamName: values.teamName,
                 team: team,
                 mentor: mentor[0]?.username,
                 synopsis: "Synopsis URL",
@@ -101,10 +117,12 @@ export default function NewProject() {
             team.forEach(async (member, index, team) => {
                 await database.users.doc(member.uid).update({
                     projectId: projectId,
-                    team: team
+                    team: team,
+                    teamName: values.teamName,
+                    projectTitle: values.title,
                 });
             })
-            
+
             // console.log(uid);
             setLoading(false);
             history.push('/project');
@@ -140,6 +158,7 @@ export default function NewProject() {
                                         initialValues={{
                                             title: '',
                                             desc: '',
+                                            teamName: '',
                                             mentor: '',
                                             one: '',
                                             two: '',
@@ -162,6 +181,13 @@ export default function NewProject() {
                                                 name="desc"
                                                 type="text"
                                                 placeholder="Describe what your project is about. (About 200 words)"
+                                                className="NewProject-form-text NewProject-form-desc"
+                                            />
+
+                                            <TextField
+                                                name="teamName"
+                                                type="text"
+                                                placeholder="Team's Name"
                                                 className="NewProject-form-text NewProject-form-desc"
                                             />
 

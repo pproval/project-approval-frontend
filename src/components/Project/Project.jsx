@@ -281,15 +281,16 @@ export default function Project() {
                                             </div>
                                             <div className="Project-mentor">
                                                 <h2>Mentor</h2>
-                                                <TeamMemberFlat />
+                                                <TeamMemberFlat member={projectData?.mentor} />
                                             </div>
                                             <div className="Project-team">
                                                 <h2>Team</h2>
                                                 <div className="Project-team-box">
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
-                                                    <TeamMemberFlat />
+                                                    {
+                                                        projectData.team.map((member) => {
+                                                            return <TeamMemberFlat member={member?.name} />
+                                                        })
+                                                    }
                                                 </div>
                                                 <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
                                             </div>
