@@ -222,6 +222,35 @@ export default function Project() {
         }
     }
 
+    const displayGrade = (status) => {
+
+        // Once the grade has been assigned, it will only be visible in view only mode with the project status of 5
+        if (status >= 5) {
+            return (
+                <div className="Project-doc">
+                    <h2>Grade</h2>
+                    <div className="Project-doc-box">
+                        Final grade will be displayed here
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    const displayRemarks = () => {
+        return (
+            <div className="Project-doc">
+                <h2>Remarks</h2>
+                <div className="TeacherProject-remarks-box">
+                    <div className="TeacherProject-remark">
+                        <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
+                        <h4 className="TeacherProject-remarks-text">If any other previous remarks exist, If any other previous remarks exist, If any other previous remarks exist</h4>
+                    </div>
+                </div>
+            </div >
+        )
+    }
+
     useEffect(() => {
         const unsubscribe = database.users.doc(currentUser.uid).onSnapshot((doc) => {
             setUserData(doc.data());
@@ -296,6 +325,8 @@ export default function Project() {
                                                     {displaySynopsis(projectData?.status)}
                                                     {displayProgressReport(projectData?.status)}
                                                     {displayFinalReport(projectData?.status)}
+                                                    {displayGrade(projectData?.status)}
+                                                    {displayRemarks()}
                                                 </div>
                                             </div>
                                         </div>
