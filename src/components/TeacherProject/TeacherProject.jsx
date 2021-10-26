@@ -50,7 +50,11 @@ export default function TeacherProject(props) {
                     <div className="Project-doc-box">
                         <h3>Minor Project Synopsis-Project Approval System</h3>
                         <div className="TeacherProject-btn-grp">
-                            <button className="Project-doc-reupload">
+                            <button
+                                className="Project-doc-reupload"
+                                disabled={loading}
+                                onClick={(e) => changeStatus(e, 1)}
+                            >
                                 <h3>Approve</h3>
                             </button>
                             <button
@@ -60,8 +64,6 @@ export default function TeacherProject(props) {
                                 <h3>View</h3>
                             </button>
                         </div>
-                        <button disabled={loading} onClick={(e) => changeStatus(e, 1)} className="Project-doc-reupload"><h3>Approve</h3></button>
-                        <button onClick={(e) => viewFile(e, projectData?.synopsis)} className="Project-doc-view"><h3>View</h3></button>
                     </div>
                 </div>
             )
@@ -118,10 +120,21 @@ export default function TeacherProject(props) {
         return (
             <div className="Project-doc">
                 <h2>Remarks</h2>
-                <div className="Project-doc-box">
-                    <h3>{userData?.username}: </h3>
+                <div className="TeacherProject-remarks-box">
+                    <div className="TeacherProject-remark">
+                        <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
+                        <h4 className="TeacherProject-remarks-text">If any other previous remarks exist, If any other previous remarks exist, If any other previous remarks exist</h4>
+                    </div>
+                    <div className="TeacherProject-add-remark">
+                        <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
+                        <form className="TeacherProject-remarks-form">
+                            <input type="text" placeholder="Enter remarks" className="TeacherProject-remarks-input">
+                            </input>
+                            <button className="TeacherProject-remarks-submit"><h3>Submit</h3></button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </div >
         )
     }
 
@@ -162,45 +175,27 @@ export default function TeacherProject(props) {
                                         </h4>
                                     </div>
                                 </div>
-                                <div className="Project-body">
-                                    <div className="Project-body-container">
-                                        <div className="Project-status">
-                                            <h2>Status</h2>
-                                            <div className="Project-status-box">
-                                                <ProjectStatus status={projectData?.status} />
-                                            </div>
-                                        </div>
-                                        <div className="Project-description">
-                                            <h2>Description</h2>
-                                            <div className="Project-description-box">
-                                                <h4 style={{ textAlign: "justify" }}>
-                                                    {projectData?.description}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div className="Project-mentor">
-                                            <h2>Mentor</h2>
-                                            <TeamMemberFlat member={projectData?.mentor} />
-                                        </div>
-                                        <div className="Project-team">
-                                            <h2>Team</h2>
-                                            <div className="Project-team-box">
-                                                {
-                                                    projectData.team.map((member) => {
-                                                        return <TeamMemberFlat key={member?.uid} member={member?.name} />
-                                                    })
-                                                }
-                                            </div>
-                                            <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
-                                        </div>
-                                        {displaySynopsis(projectData?.status)}
-                                        {displayProgressReport(projectData?.status)}
-                                        {displayFinalReport(projectData?.status)}
-                                        {displayRemarks()}
-                                    </div>
+                                <div className="Project-mentor">
+                                    <h2>Mentor</h2>
+                                    <TeamMemberFlat member={projectData?.mentor} />
                                 </div>
-                            </div >
-                        </div >
+                                <div className="Project-team">
+                                    <h2>Team</h2>
+                                    <div className="Project-team-box">
+                                        {
+                                            projectData.team.map((member) => {
+                                                return <TeamMemberFlat key={member?.uid} member={member?.name} />
+                                            })
+                                        }
+                                    </div>
+                                    <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
+                                </div>
+                                {displaySynopsis(projectData?.status)}
+                                {displayProgressReport(projectData?.status)}
+                                {displayFinalReport(projectData?.status)}
+                                {displayRemarks()}
+                            </div>
+                        </div>
                     </div>
                 </div>
             }

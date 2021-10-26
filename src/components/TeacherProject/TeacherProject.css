@@ -5,3 +5,80 @@
   width: 320px;
   /* background-color: blanchedalmond; */
 }
+
+.TeacherProject-remarks-box {
+  /* background-color: blanchedalmond; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 84, 0.4);
+  color: rgba(0, 0, 84, 0.6);
+}
+
+.TeacherProject-remark {
+  width: 100%;
+  /* background-color: brown; */
+  margin-bottom: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TeacherProject-remarks-text {
+  /* color: rgba(0, 0, 84, 0.4); */
+  /* background-color: burlywood; */
+  width: 80%;
+}
+
+.TeacherProject-add-remark {
+  /* background-color: blue; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TeacherProject-remarks-name {
+  /* background-color: blueviolet; */
+  width: 20%;
+}
+
+.TeacherProject-remarks-form {
+  /* background-color: brown; */
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TeacherProject-remarks-input {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 84, 0.4);
+  font-size: 16px;
+  outline: none;
+  margin: 10px 0;
+  background-color: white;
+  height: 50px;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+.TeacherProject-remarks-submit {
+  width: 150px;
+  height: 50px;
+  margin: 0;
+  background-color: white;
+  border: 2px solid rgba(4, 255, 171, 1);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.TeacherProject-remarks-submit:hover {
+  background-color: rgba(4, 255, 171, 1);
+  color: white;
+}
