@@ -116,6 +116,33 @@ export default function TeacherProject(props) {
         }
     }
 
+    const displayGrade = (status) => {
+
+        // Final report has been submitted and now grade can be assigned
+        if (status == 4) {
+            return (
+                <div className="Project-doc">
+                    <h2>Grade</h2>
+                    <div className="Project-doc-box">
+                        Final grade form will come here
+                    </div>
+                </div>
+            )
+        }
+
+        // Once the grade has been assigned, it will only be visible in view only mode with the project status of 5
+        if (status >= 5) {
+            return (
+                <div className="Project-doc">
+                    <h2>Grade</h2>
+                    <div className="Project-doc-box">
+                        Final grade will be displayed here
+                    </div>
+                </div>
+            )
+        }
+    }
+
     const displayRemarks = () => {
         return (
             <div className="Project-doc">
@@ -193,6 +220,7 @@ export default function TeacherProject(props) {
                                 {displaySynopsis(projectData?.status)}
                                 {displayProgressReport(projectData?.status)}
                                 {displayFinalReport(projectData?.status)}
+                                {displayGrade(projectData?.status)}
                                 {displayRemarks()}
                             </div>
                         </div>
