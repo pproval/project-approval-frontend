@@ -12,10 +12,11 @@ import './TeacherProject.css'
 
 export default function TeacherProject(props) {
     const projectId = props.match.params.projectId;
-    const path=`/project/${projectId}/team`;
+    const path = `/project/${projectId}/team`;
     const [projectData, setProjectData] = useState();
     const [loading, setLoading] = useState(false);
     const [remarks, setRemarks] = useState('');
+    const [grade, setGrade] = useState('');
 
     const viewFile = (e, URL) => {
         if (URL !== null && URL !== undefined) {
@@ -27,7 +28,18 @@ export default function TeacherProject(props) {
         e.preventDefault();
         setLoading(true);
         await database.projects.doc(projectId).update({
+            remarkList: [...projectData?.remarkList, remarks],
             remarks: remarks,
+        });
+        setLoading(false);
+    }
+
+    const gradeProject = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        await database.projects.doc(projectId).update({
+            status: 5,
+            grade: grade,
         });
         setLoading(false);
     }
@@ -130,12 +142,29 @@ export default function TeacherProject(props) {
     const displayGrade = (status) => {
 
         // Final report has been submitted and now grade can be assigned
-        if (status == 4) {
+        if (status === 4) {
             return (
                 <div className="Project-doc">
-                    <h2>Grade</h2>
+                    <h2>Marks</h2>
                     <div className="Project-doc-box">
-                        Final grade form will come here
+                        <form className="TeacherProject-remarks-form">
+                            <input
+                                name="remarks"
+                                type="text"
+                                value={grade}
+                                onChange={(e) => setGrade(e.target.value)}
+                                placeholder="Enter Marks out of 100"
+                                className="TeacherProject-remarks-input"
+                            />
+                            <button
+                                disabled={loading}
+                                className="TeacherProject-remarks-submit"
+                                type="submit"
+                                onClick={(e) => gradeProject(e)}
+                            >
+                                <h3>Submit</h3>
+                            </button>
+                        </form>
                     </div>
                 </div>
             )
@@ -145,9 +174,9 @@ export default function TeacherProject(props) {
         if (status >= 5) {
             return (
                 <div className="Project-doc">
-                    <h2>Grade</h2>
+                    <h2>Marks</h2>
                     <div className="Project-doc-box">
-                        Final grade will be displayed here
+                        {projectData?.grade + ' out of 100'}
                     </div>
                 </div>
             )
@@ -181,7 +210,7 @@ export default function TeacherProject(props) {
                                 className="TeacherProject-remarks-input"
                             />
                             <button
-                                disabled={loading}
+                                disabled={loading || remarks === ''}
                                 className="TeacherProject-remarks-submit"
                                 type="submit"
                                 onClick={(e) => submitRemark(e)}
