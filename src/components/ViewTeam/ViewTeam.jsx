@@ -24,7 +24,7 @@ export default function ViewTeam(props) {
 
     return (
         <>
-            <Navbar />
+            <Navbar role={2} />
             <div className="Team">
                 <div className="Team-container">
                     <div className="Team-header">
