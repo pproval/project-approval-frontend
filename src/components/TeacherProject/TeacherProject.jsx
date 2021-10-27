@@ -12,13 +12,24 @@ import './TeacherProject.css'
 
 export default function TeacherProject(props) {
     const projectId = props.match.params.projectId;
+    const path=`/project/${projectId}/team`;
     const [projectData, setProjectData] = useState();
     const [loading, setLoading] = useState(false);
+    const [remarks, setRemarks] = useState('');
 
     const viewFile = (e, URL) => {
         if (URL !== null && URL !== undefined) {
             window.open(URL);
         }
+    }
+
+    const submitRemark = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        await database.projects.doc(projectId).update({
+            remarks: remarks,
+        });
+        setLoading(false);
     }
 
     const changeStatus = async (e, code) => {
@@ -148,16 +159,35 @@ export default function TeacherProject(props) {
             <div className="Project-doc">
                 <h2>Remarks</h2>
                 <div className="TeacherProject-remarks-box">
-                    <div className="TeacherProject-remark">
-                        <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
-                        <h4 className="TeacherProject-remarks-text">If any other previous remarks exist, If any other previous remarks exist, If any other previous remarks exist</h4>
-                    </div>
+                    {
+                        projectData?.remarks !== '' ?
+                            <>
+                                <div className="TeacherProject-remark">
+                                    <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
+                                    <h4 className="TeacherProject-remarks-text">{projectData?.remarks}</h4>
+                                </div>
+                            </> : <></>
+                    }
+
                     <div className="TeacherProject-add-remark">
                         <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
                         <form className="TeacherProject-remarks-form">
-                            <input type="text" placeholder="Enter remarks" className="TeacherProject-remarks-input">
-                            </input>
-                            <button className="TeacherProject-remarks-submit"><h3>Submit</h3></button>
+                            <input
+                                name="remarks"
+                                type="text"
+                                value={remarks}
+                                onChange={(e) => setRemarks(e.target.value)}
+                                placeholder="Enter remarks"
+                                className="TeacherProject-remarks-input"
+                            />
+                            <button
+                                disabled={loading}
+                                className="TeacherProject-remarks-submit"
+                                type="submit"
+                                onClick={(e) => submitRemark(e)}
+                            >
+                                <h3>Submit</h3>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -215,7 +245,7 @@ export default function TeacherProject(props) {
                                             })
                                         }
                                     </div>
-                                    <Link to="/team" className="Project-viewteam"><h3>View Team</h3></Link>
+                                    <Link to={path} className="Project-viewteam"><h3>View Team</h3></Link>
                                 </div>
                                 {displaySynopsis(projectData?.status)}
                                 {displayProgressReport(projectData?.status)}
