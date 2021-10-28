@@ -127,38 +127,49 @@ export default function Profile() {
                                                     <Form
                                                         className="Profile-edit-form"
                                                     >
-                                                        <TextField
+<div className="Fname">                                                       <TextField 
                                                             label="Name "
                                                             name="Name"
                                                             type="text"
                                                             placeholder="Jane Doe"
                                                         />
-
+</div>
+<div className="College">
                                                         <Spinner label="College " name="College">
-                                                            <option value="">Select your college</option>
+                                                        
+                                                            <option  value="">Select your college</option>
                                                             <option value="MSIT">Maharaja Surajmal Institute of Technology</option>
+                                                        
                                                         </Spinner>
-
+</div>
+<div className="Degree">
                                                         <Spinner label="Degree " name="Degree">
-                                                            <option value="">Select your degree</option>
+                                                       
+                                                             <option value="">Select your degree</option>
                                                             <option value="B.Tech">Bachelor of Technology</option>
                                                             <option value="B.E">Bachelor of Engineering</option>
+                                                        
                                                         </Spinner>
-
+</div>
+                                                        <div className="Branch">
                                                         <Spinner label="Branch " name="Branch">
+                                                       
                                                             <option value="">Select your branch</option>
                                                             <option value="CSE">Computer Science & Engineering</option>
                                                             <option value="IT">Information Technology</option>
                                                             <option value="ECE">Electronics & Communication Engineering</option>
                                                             <option value="EEE">Electrical & Electronics Engineering</option>
+                                                       
                                                         </Spinner>
-
+</div>
+<div className="Enroll">
                                                         <TextField
                                                             label="Enrollment No "
                                                             name="Enroll"
                                                             type="number"
                                                             placeholder="12345678910"
                                                         />
+</div>
                                                         <div className="Profile-btn-grp">
                                                             <button
                                                                 onClick={() => setEditable(!editable)}
@@ -192,18 +203,18 @@ export default function Profile() {
                                                     <Form
                                                         className="Profile-edit-form"
                                                     >
-                                                        <TextField
+                                                        <TextField className="Fname"
                                                             label="Name "
                                                             name="Name"
                                                             type="text"
                                                             placeholder="Jane Doe"
                                                         />
 
-                                                        <Spinner label="College " name="College">
+                                                        <Spinner  label="College " name="College">
                                                             <option value="">Select your college</option>
                                                             <option value="MSIT">Maharaja Surajmal Institute of Technology</option>
                                                         </Spinner>
-
+                                                  
                                                         <div className="Profile-btn-grp">
                                                             <button
                                                                 onClick={() => setEditable(!editable)}
