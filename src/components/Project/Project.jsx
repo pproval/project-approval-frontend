@@ -228,9 +228,9 @@ export default function Project() {
         if (status >= 5) {
             return (
                 <div className="Project-doc">
-                    <h2>Grade</h2>
+                    <h2>Marks</h2>
                     <div className="Project-doc-box">
-                        Final grade will be displayed here
+                        {projectData?.grade + ' out of 100'}
                     </div>
                 </div>
             )
@@ -242,10 +242,15 @@ export default function Project() {
             <div className="Project-doc">
                 <h2>Remarks</h2>
                 <div className="TeacherProject-remarks-box">
-                    <div className="TeacherProject-remark">
-                        <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
-                        <h4 className="TeacherProject-remarks-text">If any other previous remarks exist, If any other previous remarks exist, If any other previous remarks exist</h4>
-                    </div>
+                    {
+                        projectData?.remarks !== '' ?
+                            <>
+                                <div className="TeacherProject-remark">
+                                    <h3 className="TeacherProject-remarks-name">{projectData.mentor}: </h3>
+                                    <h4 className="TeacherProject-remarks-text">{projectData?.remarks}</h4>
+                                </div>
+                            </> : <></>
+                    }
                 </div>
             </div >
         )

@@ -12,6 +12,7 @@ import TeacherProject from './components/TeacherProject/TeacherProject';
 import NewProject from './components/NewProject/NewProject';
 import StudentList from './components/StudentList/StudentList';
 import TeacherList from './components/TeacherList/TeacherList';
+import ViewTeam from './components/ViewTeam/ViewTeam';
 import AuthProvider from './context/AuthProvider';
 import './styles/App.css';
 
@@ -26,6 +27,7 @@ function App() {
           <PrivateRoute exact path="/project" privateComponent={Project} />
           <PrivateRoute exact path="/project/new" privateComponent={NewProject} />
           <PrivateRoute exact path="/project/:projectId" privateComponent={TeacherProject} />
+          <PrivateRoute exact path="/project/:projectId/team" privateComponent={ViewTeam} />
           <PrivateRoute exact path="/studentlist" privateComponent={StudentList} />
           <PrivateRoute exact path="/teacherlist" privateComponent={TeacherList} />
           <Route path="/home" component={Home} />

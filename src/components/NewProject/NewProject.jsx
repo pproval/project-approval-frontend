@@ -107,7 +107,8 @@ export default function NewProject() {
                 finalReport: "Final Report URL",
                 repositoryURL: "",
                 grade: "Ungraded",
-                remarks: ""
+                remarks: "",
+                remarkList: [],
             }
 
             await database.projects.doc(projectId).set(projectObject);
